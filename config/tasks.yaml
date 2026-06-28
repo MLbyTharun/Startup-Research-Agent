@@ -1,25 +1,19 @@
-# config/tasks.yaml
-# Tasks define WHAT each agent does
-# context: [] means a task gets the output of other tasks as input
 
 research_task:
   description: >
-    Research everything you can find about {company}. Search for:
+    Research everything you can find about {company}. Use your tools to gather:
     1. What does the company do? (product, customers, use case)
     2. Founding story — who started it, when, and why?
     3. Funding history — total raised, latest round, key investors
     4. Team — CEO background, key hires, team size
     5. Recent news — last 6 months of press, product launches, partnerships
     6. Any controversies, layoffs, or challenges
-    IMPORTANT: If you cannot find verified funding data from a reliable source,
-    explicitly say "UNVERIFIED" or "NOT FOUND" rather than estimating.
-    Never "make up" funding amounts or investor names.
-    
-    Search multiple times with different queries to get comprehensive data.
-    Flag anything you couldn't find or aren't sure about.
+
+    Important: Never guess or estimate funding amounts. If you can't find verified
+    data, mark it as [UNVERIFIED] rather than filling in numbers.
   expected_output: >
     A detailed research dump with all findings organized by category.
-    Each fact should note the source. Uncertain info should be marked with [UNVERIFIED].
+    Each fact should note its source. Uncertain info marked with [UNVERIFIED].
   agent: researcher
 
 analysis_task:
@@ -31,6 +25,8 @@ analysis_task:
     4. Key strengths and weaknesses
     5. What's their moat (if any)?
     6. Growth signals — any signs of traction or momentum?
+    IMPORTANT : Use the CompanyIntelligenceTool only to research COMPETITORS, 
+    not {company} itself — that research is already provided in context.
   expected_output: >
     A structured analysis covering business model, market, competitors,
     strengths/weaknesses, and moat. Be specific — avoid vague statements.
@@ -40,45 +36,30 @@ analysis_task:
 
 writing_task:
   description: >
-    Using the research and analysis, write a polished company brief for {company}.
-    
+    Using the research and analysis provided, write a polished company brief for {company}.
+
     Format it exactly like this:
-    
+
     # {company} — Company Brief
-    
+
     ## TL;DR
     (2-3 sentence summary — what they do, stage, why they matter)
-    
+
     ## Product & Business Model
-    ## Founding & Team  
+    ## Founding & Team
     ## Funding
     ## Market & Competitors
     ## Recent News & Momentum
     ## Risks & Challenges
-    
-    Keep each section concise but informative. Use bullet points inside sections.
+
+    Rules:
+    - Only use facts from the research provided — do not add anything new
+    - Keep each section concise but informative
+    - Use bullet points inside sections
+    - Mark anything uncertain as [UNVERIFIED]
   expected_output: >
     A clean, well-formatted markdown brief that someone could read in 3 minutes
     and walk away knowing everything important about the company.
   agent: writer
   context:
     - research_task
-    - analysis_task
-
-evaluation_task:
-  description: >
-    Review the company brief written about {company} and evaluate its quality:
-    1. What key information is missing?
-    2. What claims seem uncertain or unverified?
-    3. How comprehensive is the competitive analysis?
-    4. Assign an overall confidence score: 1 (very thin data) to 10 (very comprehensive)
-    5. List 2-3 follow-up searches someone should do to fill the gaps
-  expected_output: >
-    A short evaluation section with:
-    - Confidence Score: X/10
-    - What's solid
-    - What's missing or uncertain  
-    - Recommended follow-up searches
-  agent: evaluator
-  context:
-    - writing_task
