@@ -73,7 +73,7 @@ with col2:
 
 if run_button and company:
 
-    with st.spinner(f"Researching {company}... (this takes 4-6 minutes)"):
+    with st.spinner(f"Agents are Researching {company}... (this takes 3-5 minutes)"):
         try:
             result = run_research(company)
         except Exception as e:
