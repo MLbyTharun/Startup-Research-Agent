@@ -22,7 +22,7 @@ model_config = ModelConfig(
     model=ModelObject(model="groq:openai/gpt-oss-120b")
 )
 
-# ── Company Intelligence Tool (the new addition) ──────────────────────────────
+# Company Intelligence Tool (the new addition)
 
 class CompanyIntelligenceTool(BaseTool):
     name: str = "Company Intelligence"
@@ -44,7 +44,7 @@ class CompanyIntelligenceTool(BaseTool):
             api_key=os.getenv("TAVILY_API_KEY"),
             model_config=model_config,
             instructions="Extract product info, team, mission, and business model",
-            max_depth=2,
+            max_depth=4,
             max_breadth=10,
             limit=20,
         )
@@ -59,11 +59,11 @@ class CompanyIntelligenceTool(BaseTool):
                 f"{company} business model revenue",
             ],
             search_depth="advanced",
-            max_results=5,
+            max_results=7,
             topic="general",
         )
 
-        # Combine both results
+        # Combining both results
         return f"""
 ## Website Research:
 {crawl_result.get('summary', 'No website data found')}
@@ -73,10 +73,10 @@ class CompanyIntelligenceTool(BaseTool):
 """
 
 
-# ── Regular search tools (kept as fallback) ───────────────────────────────────
+# Regular search tools (keeping it for fallback) 
 
 
-def get_search_tool(max_results: int = 5):
+def get_search_tool(max_results: int = 2):
     return TavilySearchTool(
         max_results=max_results,
         search_depth="advanced",
