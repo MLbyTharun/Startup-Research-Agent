@@ -58,13 +58,16 @@ def run_crew(state: ResearchState) -> ResearchState:
 
 
 def format_output(state: ResearchState) -> ResearchState:
-    """Add a generated timestamp header to the brief"""
     from datetime import datetime
+
+    brief = state.get("brief") or ""
+
+    # Check if agent flagged company as not found
+    if brief.startswith("COMPANY_NOT_FOUND:"):
+        return {**state, "error": brief.replace("COMPANY_NOT_FOUND: ", "")}
 
     timestamp = datetime.now().strftime("%B %d, %Y")
     header = f"*Generated: {timestamp}*\n\n---\n\n"
-    brief = state.get("brief") or "No brief generated"
-
     return {**state, "brief": header + brief}
 
 
