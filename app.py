@@ -73,22 +73,6 @@ with col2:
 
 if run_button and company:
 
-#   status_container = st.empty()
-#   progress_bar = st.progress(0)
-#
-#   steps = [
-#       ("🔍 Researcher crawling company website...", 0.2),
-#       ("📰 Searching for funding, news and team info...", 0.4),
-#       ("📊 Analyst evaluating competitors and market...", 0.65),
-#       ("✍️ Writer composing the brief...", 0.85),
-#       ("📦 Finalizing report...", 1.0),
-#   ]
-#
-#   for step_text, progress_val in steps:
-#       status_container.markdown(f'<div class="agent-step">{step_text}</div>', unsafe_allow_html=True)
-#       progress_bar.progress(progress_val)
-#       time.sleep(0.5)
-
     with st.spinner(f"Researching {company}... (this takes 4-6 minutes)"):
         try:
             result = run_research(company)
