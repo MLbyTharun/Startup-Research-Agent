@@ -121,15 +121,3 @@ def research_company(company: str) -> dict:
     }
     return app.invoke(initial_state)
 
-
-# CLI 
-if __name__ == "__main__":
-    import sys
-    company = sys.argv[1] if len(sys.argv) > 1 else "Zepto"
-
-    result = research_company(company)
-
-    if result.get("error"):
-        print(f"❌ Error: {result['error']}")
-    else:
-        print(result["brief"])
