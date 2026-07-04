@@ -7,10 +7,10 @@ Built as a portfolio project to explore production patterns in agentic AI — sp
 ---
 **Watch Demo -->[Here](https://github.com/user-attachments/assets/5b79d6b3-fbb2-47ba-8e1a-d2968888e88c)**
 
-[App Screenshot-1](assests/screenshot1.png)   ||
-[App Screenshot-2](assests/screenshot2.png)   ||
-[App Screenshot-3](assests/screenshot3.png)   ||
-[App Screenshot-4](assests/screenshot4.png)   ||
+![App Screenshot-1](assests/screenshot1.png)   ||
+![App Screenshot-2](assests/screenshot2.png)   ||
+![App Screenshot-3](assests/screenshot3.png)   ||
+![App Screenshot-4](assests/screenshot4.png)   ||
 ## What It Does
 
 Most startup research is tedious. You open five tabs, skim Crunchbase, search for recent news, try to piece together who the founders are and whether the company is actually growing. This project automates that workflow using three specialized AI agents that each own a distinct part of the research process.
