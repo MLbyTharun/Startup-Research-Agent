@@ -21,7 +21,7 @@ litellm.drop_params = True
 # Each agent can also have its own LLM if needed
 
 llm = LLM(
-    model="nvidia_nim/moonshotai/kimi-k2.6",
+    model="nvidia_nim/z-ai/glm-5.2",
     api_key=os.getenv("NVIDIA_NIM_API_KEY"),
     base_url="https://integrate.api.nvidia.com/v1",
     temperature=0.3,
