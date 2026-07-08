@@ -46,7 +46,7 @@ with st.sidebar:
     - **CrewAI** — multi-agent orchestration
     - **LangGraph** — stateful graph with retry logic
     - **Tavily** — LLM-optimized web search + company intelligence
-    - **NVIDIA NIM** — Kimi K2.6 model powering all agents
+    - **NVIDIA NIM** — GLM 5.2 model powering all agents
     """)
 
     st.divider()
