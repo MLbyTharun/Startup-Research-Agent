@@ -1,7 +1,6 @@
 
 import streamlit as st
-import time
-from graph import run_research
+from graph import research_company
 
 # PAGE CONFIG
 
@@ -75,7 +74,7 @@ if run_button and company:
 
     with st.spinner(f"Agents are Researching {company}... (this takes 3-5 minutes)"):
         try:
-            result = run_research(company)
+            result = research_company(company)
         except Exception as e:
             st.error(f"Something went wrong: {e}")
             st.stop()
@@ -99,20 +98,26 @@ if run_button and company:
 
         with tab2:
             usage = result.get("token_usage")
+
+            def _field(obj, key):
+                if isinstance(obj, dict):
+                    return obj.get(key, 0) or 0
+                return getattr(obj, key, 0) or 0
+
             if usage:
+                prompt_tokens = _field(usage, "prompt_tokens")
+                completion_tokens = _field(usage, "completion_tokens")
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("Input Tokens", f"{getattr(usage, 'prompt_tokens', 0):,}")
+                    st.metric("Input Tokens", f"{prompt_tokens:,}")
                 with col2:
-                    st.metric("Output Tokens", f"{getattr(usage, 'completion_tokens', 0):,}")
+                    st.metric("Output Tokens", f"{completion_tokens:,}")
                 with col3:
-                    cost = (getattr(usage, 'prompt_tokens', 0) * 0.00000016) + \
-                           (getattr(usage, 'completion_tokens', 0) * 0.000004)
+                    cost = (prompt_tokens * 0.00000066) + (completion_tokens * 0.0000034)
                     st.metric("Est. Cost", f"${cost:.4f}")
+                st.caption("💡 Cost estimate based on typical LLM API pricing ($0.66/M input, $3.40/M output). Actual cost on NVIDIA NIM free tier may differ.")
             else:
                 st.info("Token usage not available")
-                
-                st.caption("💡 Cost estimate based on Moonshot's official Kimi K2.6 API pricing ($0.66/M input, $3.40/M output). Actual cost on NVIDIA NIM free tier may differ.")
 elif run_button and not company:
     st.warning("Please enter a company name first")
 
