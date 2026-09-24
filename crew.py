@@ -128,7 +128,7 @@ def run_research(company: str) -> dict:
 
     return {
         "company": company,
-        "brief": result.tasks_output[1].raw,   # writing_task output
+        "brief": result.tasks_output[2].raw,   # writing_task output (research=0, analysis=1, writing=2)
         "token_usage": result.token_usage,
     }
 
