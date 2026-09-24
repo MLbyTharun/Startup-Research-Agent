@@ -1,5 +1,10 @@
 .env
 output/
 __pycache__/
-output/
+*.pyc
 test_files/
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.streamlit/secrets.toml
