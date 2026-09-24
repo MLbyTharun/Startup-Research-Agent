@@ -5,12 +5,13 @@ A multi-agent AI system that researches any startup and generates a structured c
 Built as a portfolio project to explore production patterns in agentic AI — specifically how to combine CrewAI and LangGraph together, and how to make agents reliable enough to actually trust their output.
 
 ---
-**Watch Demo -->[Here](https://github.com/user-attachments/assets/5b79d6b3-fbb2-47ba-8e1a-d2968888e88c)**
+**[Watch Demo →](https://github.com/user-attachments/assets/5b79d6b3-fbb2-47ba-8e1a-d2968888e88c)**
 
-![App Screenshot-1](assests/screenshot1.png)   ||
-![App Screenshot-2](assests/screenshot2.png)   ||
-![App Screenshot-3](assests/screenshot3.png)   ||
-![App Screenshot-4](assests/screenshot4.png)   ||
+![App Screenshot-1](assets/screenshot1.png)
+![App Screenshot-2](assets/screenshot2.png)
+![App Screenshot-3](assets/screenshot3.png)
+![App Screenshot-4](assets/screenshot4.png)
+
 ## What It Does
 
 Most startup research is tedious. You open five tabs, skim Crunchbase, search for recent news, try to piece together who the founders are and whether the company is actually growing. This project automates that workflow using three specialized AI agents that each own a distinct part of the research process.
@@ -54,7 +55,7 @@ Researcher → Analyst → Writer
 | Agent Framework | CrewAI |
 | Orchestration | LangGraph |
 | Web Research | Tavily Company Intelligence API |
-| LLM | Kimi K2.6 via NVIDIA NIM |
+| LLM | GLM 5.2 via NVIDIA NIM |
 | LLM Routing | LiteLLM (model-agnostic) |
 | UI | Streamlit |
 | Config | YAML (agents and tasks defined separately from code) |
@@ -70,6 +71,7 @@ Startup-Research-Agent/
 │   └── tasks.yaml         # Task descriptions and expected outputs
 ├── tools/
 │   └── search_tools.py    # Tavily tool definitions
+├── assets/                # Screenshots used in this README
 ├── crew.py                # CrewAI crew — agents, tasks, and execution
 ├── graph.py               # LangGraph orchestrator — state, flow, retries
 ├── app.py                 # Streamlit UI
