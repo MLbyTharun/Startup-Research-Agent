@@ -18,22 +18,26 @@ research_task:
 
 analysis_task:
   description: >
-    Important: If you cannot find any credible information about {company} in your first tool call , dont make any other tool calls  
-    after searching, do NOT make up information. Instead, respond with exactly:
+    First, check whether the research context contains any credible information
+    about {company}. If it does not, do NOT make up information and do NOT call
+    any tools. Instead, respond with exactly:
 
-    "COMPANY_NOT_FOUND: No information found for '{company}'. 
+    "COMPANY_NOT_FOUND: No information found for '{company}'.
     Did you mean: [suggest 1-2 similar company names if possible]?"
-      
-    Only do this if you genuinely cannot find anything — not just because 
+
+    Only do this if you genuinely cannot find anything — not just because
     information is limited.
-    Using the research on {company}, perform a competitive and business analysis:
+
+    Otherwise, using the research on {company}, perform a competitive and
+    business analysis:
     1. Business model — how do they make money?
     2. Target market — who are their customers and what's the market size?
     3. Top 3-5 competitors — name them and explain how {company} differs
     4. Key strengths and weaknesses
     5. What's their moat (if any)?
     6. Growth signals — any signs of traction or momentum?
-    IMPORTANT : Use the CompanyIntelligenceTool only to research COMPETITORS, 
+
+    IMPORTANT: Use the CompanyIntelligenceTool only to research COMPETITORS,
     not {company} itself — that research is already provided in context.
   expected_output: >
     A structured analysis covering business model, market, competitors,
